@@ -142,7 +142,7 @@ pipeline {
                 }
             }
         }
-        stage("Тестирование ADD") {
+        stage("Дымовое тестирование ADD") {
             steps {
                 timestamps {
                     script {
@@ -166,7 +166,7 @@ pipeline {
                             admin1cPwdLine = "--db-pwd ${admin1cPwd}"
                         }
                         // Запускаем ADD тестирование на произвольной базе, сохранившейся в переменной testbaseConnString
-                        returnCode = utils.cmd("runner vanessa --settings tools/vrunner.json ${platform1cLine} --ibconnection \"${testbaseConnString}\" ${admin1cUsrLine} ${admin1cPwdLine} --pathvanessa tools/add/bddRunner.epf")
+                        returnCode = utils.cmd("vrunner xunit E:/CI/tests --settings E:/CI/params/settings.json --debuglogfile E:/CI/logs/log.txt --ibconnection \"${testbaseConnString}\" ${admin1cUsrLine} ${admin1cPwdLine}")
 
                         if (returnCode != 0) {
                             utils.raiseError("Возникла ошибка при запуске ADD на сервере ${server1c} и базе ${testbase}")
