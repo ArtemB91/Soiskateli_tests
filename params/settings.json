@@ -1,0 +1,16 @@
+{
+   "default": {
+        "--ibconnection": "/Ssrv35:1741\toryanik_hn_recruit_dev",
+        "--db-user": "Администратор",
+        "--db-pwd": "123",
+        "--ordinaryapp": "-1"
+    },
+    "xunit": {
+        "--xddConfig": "E:\CI\params\smoke.bsp.json",
+        "testsPath": "E:\CI\tests",
+        "--reportsxunit": "ГенераторОтчетаAllureXML{$workspaceRoot/build/out/allure/allure-testsuite.xml}",
+        "--testclient": "Администратор:123:1535",
+        "--testclient-additional" : "/iTaxi",
+		"--xdddebug" : ""
+    }
+}
