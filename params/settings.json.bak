@@ -6,7 +6,7 @@
         "--ordinaryapp": "-1"
     },
     "xunit": {
-        "--xddConfig": "params\smoke.bsp.json",
+        "--xddConfig": "E:\CI\params\smoke.bsp.json",
         "testsPath": "E:\CI\tests",
         "--reportsxunit": "ГенераторОтчетаAllureXML{$workspaceRoot/build/out/allure/allure-testsuite.xml}",
         "--testclient": "Администратор:123:1535",
