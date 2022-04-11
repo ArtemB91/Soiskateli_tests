@@ -7,7 +7,7 @@
     },
     "xunit": {
         "--xddConfig": "params\smoke.bsp.json",
-        "testsPath": "tests\main",
+        "testsPath": "E:\CI\tests",
         "--reportsxunit": "ГенераторОтчетаAllureXML{$workspaceRoot/build/out/allure/allure-testsuite.xml}",
         "--testclient": "Администратор:123:1535",
         "--testclient-additional" : "/iTaxi",
