@@ -142,7 +142,7 @@ pipeline {
                 }
             }
         }
-        stage("Дымовое тестирование ADD") {
+        stage("Дымовое тестирование ADD: основные тесты") {
             steps {
                 timestamps {
                     script {
@@ -166,9 +166,42 @@ pipeline {
                             admin1cPwdLine = "--db-pwd ${admin1cPwd}"
                         }
                         // Запускаем ADD тестирование на произвольной базе, сохранившейся в переменной testbaseConnString
-                        returnCode = utils.cmd("vrunner xunit tests --settings params/settings.json  --ibconnection \"${testbaseConnString}\" ${admin1cUsrLine} ${admin1cPwdLine}")
+                        returnCode = utils.cmd("vrunner xunit tests/main --settings params/settings.json  --ibconnection \"${testbaseConnString}\" ${admin1cUsrLine} ${admin1cPwdLine}")
                         if (returnCode != 0) {
-                            utils.raiseError("Возникла ошибка при запуске ADD на сервере ${server1c} и базе ${testbase}")
+                            utils.raiseError("Возникла ошибка при запуске ADD main на сервере ${server1c} и базе ${testbase}")
+                        }
+                    }
+                }
+            }
+        }
+
+        stage("Дымовое тестирование ADD: проверка на ограниченных правах") {
+            steps {
+                timestamps {
+                    script {
+
+                        if (templatebasesList.size() == 0) {
+                            return
+                        }
+
+                        platform1cLine = ""
+                        if (platform1c != null && !platform1c.isEmpty()) {
+                            platform1cLine = "--v8version ${platform1c}"
+                        }
+
+                        admin1cUsrLine = ""
+                        if (admin1cUser != null && !admin1cUser.isEmpty()) {
+                            admin1cUsrLine = "--db-user ${admin1cUser}"
+                        }
+
+                        admin1cPwdLine = ""
+                        if (admin1cPwd != null && !admin1cPwd.isEmpty()) {
+                            admin1cPwdLine = "--db-pwd ${admin1cPwd}"
+                        }
+                        // Запускаем ADD тестирование на произвольной базе, сохранившейся в переменной testbaseConnString
+                        returnCode = utils.cmd("vrunner xunit tests/hr --settings params/settingshr.json  --ibconnection \"${testbaseConnString}\" ${admin1cUsrLine} ${admin1cPwdLine}")
+                        if (returnCode != 0) {
+                            utils.raiseError("Возникла ошибка при запуске ADD HR на сервере ${server1c} и базе ${testbase}")
                         }
                     }
                 }
