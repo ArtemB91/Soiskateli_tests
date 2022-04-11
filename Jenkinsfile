@@ -188,6 +188,12 @@ pipeline {
 
                 allure includeProperties: false, jdk: '', results: [[path: 'build/out/allure']]
             }
+
+             cleanWs(cleanWhenNotBuilt: true,
+                    deleteDirs: false,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '**/*testsuite.xml', type: 'INCLUDE']])
         }
     }
 }
