@@ -1,10 +1,4 @@
 {
-   "default": {
-        "--ibconnection": "/Ssrv35:1741\toryanik_hn_recruit_dev",
-        "--db-user": "Администратор",
-        "--db-pwd": "123",
-        "--ordinaryapp": "-1"
-    },
     "xunit": {
         "--xddConfig": "params\smoke.bsp.json",
         "testsPath": "tests\hr",
